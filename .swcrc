@@ -1,0 +1,32 @@
+{
+  "minify": true,
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "dynamicImport": false,
+      "decorators": true
+    },
+    "target": "es2020",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "preserveAllComments": false,
+    "baseUrl": ".",
+    "loose": false,
+    "externalHelpers": false,
+    "transform": {
+      "optimizer": {
+        "jsonify": {
+          "minCost": 0
+        }
+      },
+      "legacyDecorator": true,
+      "decoratorMetadata": true
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  }
+}
