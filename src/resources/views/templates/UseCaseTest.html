@@ -1,39 +1,105 @@
-import { {{ className }}, setup{{ className }} } from '@/domain/use-cases'
-// import { AppendFile } from "@/domain/contracts/gateways";
-// import { MockProxy, mock } from 'jest-mock-extended'
+import { {{ className }}Show } from '@/data/use-cases/contact/contacts'
+import { HttpStatusCode } from '@/data/protocols/http'
+import { ContactNotFoundError, InvalidCredentialsError, UnexpectedError } from '@/domain/error'
+import { HttpClientSpy } from '../../../mocks'
 
-describe('{{ className }}', () => {
-  let sut: {{ className }}
-//let fileStorage: MockProxy<AppendFile>
+import {faker} from '@faker-js/faker'
 
-  beforeAll(() => {
-    // fileStorage = mock()
+type SutTypes = {
+  sut: {{ className }}Show
+  httpClientSpy: HttpClientSpy<{{ className }}Show.Model>
+}
 
-    // fileStorage.upload.mockReturnValue('')
+const makeSut = (url: string = faker.internet.url()): SutTypes => {
+  const httpClientSpy = new HttpClientSpy<{{ className }}Show.Model>()
+  const sut = new {{ className }}Show(url, httpClientSpy)
+  return {
+    sut,
+    httpClientSpy
+  }
+}
+
+export const mockParams: {{ className }}Show.Params = {
+  id: faker.string.uuid()
+}
+
+export const mockResult: {{ className }}Show.Model = {
+  id: faker.string.uuid(),
+  name: faker.person.fullName(),
+  status: 'enabled',
+  createdAt: new Date().toISOString(),
+  nickname: 'any_nickname',
+  inscription: 'any_inscription',
+  notes: 'any_notes',
+  updatedAt: new Date().toISOString()
+}
+
+describe('{{ className }}Show', () => {
+  test('Should call HttpClient with correct values', async () => {
+    const url = faker.internet.url()
+    const { sut, httpClientSpy } = makeSut(url)
+
+    await sut.show(mockParams)
+
+    expect(httpClientSpy.url).toEqual(url)
+    expect(httpClientSpy.method).toBe('get')
+    expect(httpClientSpy.body).toEqual(undefined)
   })
 
-  beforeEach(() => {
-    sut = setup{{ className }}(
-      //fileStorage
-    )
+  test('Should throw UnexpectedError if HttpClient returns 400', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.badRequest
+    }
+
+    const promise = sut.show(mockParams)
+
+    await expect(promise).rejects.toThrow(new UnexpectedError())
   })
 
-  it('should call handle sucess', async () => {
-    const response = await sut({{ properties }})
+  test('Should throw UnexpectedError if HttpClient returns 500', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.serverError
+    }
 
-    void expect(response).toEqual({
-      success: true
-    })
+    const promise = sut.show(mockParams)
+
+    await expect(promise).rejects.toThrow(new UnexpectedError())
   })
 
- /*
-  it('should rethrow if UploadFile throws', async () => {
-    const error = new Error('upload_error')
-    fileStorage.upload.mockRejectedValueOnce(error)
+  test('Should throw ContactNotFoundError if HttpClient returns 404', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.notFound
+    }
 
-    const promise = sut({ file, bucketName })
+    const promise = sut.show(mockParams)
 
-    await expect(promise).rejects.toThrow(error)
+    await expect(promise).rejects.toThrow(new ContactNotFoundError())
   })
-  */
+
+  test('Should throw UnauthorizedError if HttpClient returns 401', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.unauthorized
+    }
+
+    const promise = sut.show(mockParams)
+
+    await expect(promise).rejects.toThrow(new InvalidCredentialsError())
+  })
+
+  test('Should return an Contact.Model if HttpClient returns 200', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    const httpResult = mockResult
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.ok,
+      body: httpResult
+    }
+
+    const account = await sut.show(mockParams)
+
+    expect(account).toEqual(httpResult)
+  })
 })
