@@ -1,5 +1,5 @@
 {
-  "name": "clean_code_template_cli",
+  "name": "clean_code_react_template_cli",
   "description": "Professional API using Clean Architecture and TDD.",
   "license": "GPL-3.0-or-later",
   "version": "0.0.99",
@@ -16,11 +16,11 @@
     "commander"
   ],
   "bin": {
-    "clean_code_template_cli": "./dist/index.js"
+    "clean_code_react_template_cli": "./dist/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Warmachine13/cli-template-node.git"
+    "url": "https://github.com/lucaspereirasouzat/cli-template-react"
   },
   "main": "./dist/index.js",
   "scripts": {

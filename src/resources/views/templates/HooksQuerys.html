@@ -1,0 +1,12 @@
+import { {{ className }}Show } from "@/domain/use-cases";
+import { useMutationFactory } from "@/infra/lib/react-query";
+import { makeRemote{{ className }}Show } from "@/main/factories/use-cases";
+
+export function {{ className }}ShowRequest(input: {{ className }}Show.Params) {
+  const remote{{ className }}Show = makeRemote{{ className }}Show();
+  return remote{{ className }}Show.show(input);
+}
+
+export function use{{ className }}Show() {
+  return useMutationFactory({{ className }}ShowRequest);
+}

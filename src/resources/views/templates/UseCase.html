@@ -1,15 +1,34 @@
-//import { LoadFacebookUser, TokenGenerator } from '@/domain/contracts/gateways'
-//import { LoadUserAccount, SaveFacebookAccount } from '@/domain/contracts/repos'
-//import { AccessToken, FacebookAccount, AuthenticationError } from '@/domain/entities'
+import { HttpClient, HttpStatusCode } from "@/data/protocols/http";
+import { {{ className }}NotFoundError, InvalidCredentialsError, UnexpectedError } from "@/domain/error";
+import { {{ className }}Show } from "@/domain/use-cases";
 
-type Setup = () => {{ className }}UseCase
-type Input = { name: string }
-type Output = { success: boolean }
-export type {{ className }}UseCase = (input: Input) => Promise<Output>
+export class Remote{{ className }}Show implements {{ className }}Show {
+  constructor(
+    private readonly url: string,
+    private readonly httpClient: HttpClient<Remote{{ className }}Show.Model>
+  ) {}
 
-export const setup{{ className }}: Setup = () => async input => {
+  async show({id}: {{ className }}Show.Params): Promise<{{ className }}Show.Result> {
+    const httpResponse = await this.httpClient.request({
+      url: this.url.replace("{id}", id),
+      method: "get"
+    });
+    const Remote{{ className }}sShow = httpResponse.body || ({} as Remote{{ className }}sShow.Model);
 
-  return {
-    success: true
+    switch (httpResponse.statusCode) {
+      case HttpStatusCode.ok:
+        return Remote{{ className }}sShow;
+      case HttpStatusCode.notFound:
+        throw new {{ className }}NotFoundError()
+      case HttpStatusCode.unauthorized:
+        throw new InvalidCredentialsError();
+      default:
+        throw new UnexpectedError();
+    }
   }
+}
+
+export namespace Remote{{ className }}Show {
+  export type Params = {{ className }}Show.Params;
+  export type Model = {{ className }}Show.Result;
 }

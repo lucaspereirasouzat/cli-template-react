@@ -1,6 +1,20 @@
+export const TEMPLATE_FOLDER = "../../resources/views/templates";
 
-const TEMPLATE_FOLDER = "../../resources/views/templates";
+export const PATH_HOOKS_QUERYS_APPLICATION = "presentation/hooks/queries";
+export const PATH_HOOKS_QUERYS = `${TEMPLATE_FOLDER}/HooksQuerys.html`;
 
+export const PATH_FACTORY_USE_CASES_APPLICATION = "main/factories/use-cases";
+export const PATH_FACTORY_USE_CASES = `${TEMPLATE_FOLDER}/FactoryUseCases.html`;
+
+export const PATH_DATA_USE_CASES = "data/use-cases";
+
+export const PATH_USE_CASE_DOMAIN = "domain/use-cases";
+export const PATH_USE_CASE_GATEWAY = "main/factories/domain/use-cases";
+export const PATH_USE_CASE = `${TEMPLATE_FOLDER}/UseCase.html`;
+export const PATH_USE_CASE_TEST = `${TEMPLATE_FOLDER}/UseCaseTest.html`;
+export const PATH_USE_CASE_FACTORY = `${TEMPLATE_FOLDER}/FactoryUseCase.html`;
+
+// src/data/use-cases/contact/contacts/remote-show.ts
 
 export const PATH_CONTROLLER = `${TEMPLATE_FOLDER}/Controller.html`;
 export const PATH_CONTROLLER_TEST = `${TEMPLATE_FOLDER}/ControllerTest.html`;
@@ -14,12 +28,6 @@ export const PATH_CONTRACT = `${TEMPLATE_FOLDER}/Contract.html`;
 
 export const PATH_ERROR = `${TEMPLATE_FOLDER}/Error.html`;
 export const PATH_ERROR_APPLICATION = "domain/entities/errors";
-
-export const PATH_USE_CASE_DOMAIN = "domain/use-cases";
-export const PATH_USE_CASE_GATEWAY = "main/factories/domain/use-cases";
-export const PATH_USE_CASE = `${TEMPLATE_FOLDER}/UseCase.html`;
-export const PATH_USE_CASE_TEST = `${TEMPLATE_FOLDER}/UseCaseTest.html`;
-export const PATH_USE_CASE_FACTORY = `${TEMPLATE_FOLDER}/FactoryUseCase.html`;
 
 export const GATEWAY_PATH_APPLICATION = "infra/gateways";
 export const PATH_GATEWAY = `${TEMPLATE_FOLDER}/Gateways.html`;
@@ -54,7 +62,6 @@ export const MIDDLEWARE_PATH = "application/middlewares";
 export const MIDDLEWARE_MAIN_PATH = "main/middlewares";
 export const PATH_MAIN_MIDDLEWARE = `${TEMPLATE_FOLDER}/MiddlewareMain.html`;
 
-
 export const DECORATOR_PATH = "application/decorators/";
 export const PATH_DECORATOR_GATEWAY = "main/factories/application/decorators/";
 export const PATH_DECORATOR = `${TEMPLATE_FOLDER}/Decorator.html`;
@@ -66,7 +73,6 @@ export const PATH_EVENTS_GATEWAY = "main/factories/application/events/";
 export const PATH_EVENTS = `${TEMPLATE_FOLDER}/Events.html`;
 export const PATH_EVENTS_TEST = `${TEMPLATE_FOLDER}/EventsTest.html`;
 export const PATH_EVENTS_FACTORY = `${TEMPLATE_FOLDER}/FactoryEvent.html`;
-
 
 export const PATH_ADAPTER_PATH = "main/adapters";
 export const PATH_ADAPTER = `${TEMPLATE_FOLDER}/Adapter.html`;

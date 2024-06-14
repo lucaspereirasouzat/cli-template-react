@@ -1,0 +1,7 @@
+import { Remote{{ className }} } from "@/data";
+import { {{ className }} } from "@/domain/use-cases";
+import { makeApiUrl } from "@/main/factories/http";
+import { makeAuthorizeHttpClientDecorator } from "@/main/factories/decorators";
+
+export const makeRemote{{ className }} = (): {{ className }} =>
+  new Remote{{ className }}(makeApiUrl("/contact/contacts/{id}"), makeAuthorizeHttpClientDecorator());

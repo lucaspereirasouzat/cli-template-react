@@ -1,5 +1,5 @@
 import { it, describe, expect, beforeEach, vitest } from "vitest";
-import { CreateRepository } from "@/domain/use-cases/create-repository";
+import { CreateRequest } from "@/domain/use-cases/create-request";
 import {
   ReadFile,
   FolderExists,
@@ -8,13 +8,18 @@ import {
   LogFailure,
   LogSuccess,
   AppendFile,
-  FileExists
+  FileExists,
 } from "@/domain/contracts";
 import { Resolve } from "@/domain/contracts/Resolve";
 
-describe("Create Repository", () => {
-  let useCase: CreateRepository;
-  let fileStorage: ReadFile & FolderExists & MakeDir & WriteFile & AppendFile & FileExists;
+describe("Create Controller", () => {
+  let useCase: CreateRequest;
+  let fileStorage: ReadFile &
+    FolderExists &
+    MakeDir &
+    WriteFile &
+    AppendFile &
+    FileExists;
   let logger: LogFailure & LogSuccess;
   let pathresolve: Resolve;
 
@@ -29,15 +34,15 @@ describe("Create Repository", () => {
     fileStorage.fileExists = vitest.fn(() => true);
 
     pathresolve = vitest.fn();
-    pathresolve.pathresolve = vitest.fn(() => 'path')
+    pathresolve.pathresolve = vitest.fn(() => "path");
 
     logger = vitest.fn();
-    logger.error = vitest.fn()
-    logger.log = vitest.fn()
+    logger.error = vitest.fn();
+    logger.log = vitest.fn();
   });
 
   beforeEach(() => {
-    useCase = new CreateRepository(fileStorage, pathresolve, logger);
+    useCase = new CreateRequest(fileStorage, pathresolve, logger);
   });
   it("should be able to create a new file", () => {
     useCase.handle("aa");
@@ -53,13 +58,17 @@ describe("Create Repository", () => {
   it("should be able validate if folder exists ", () => {
     useCase.handle("aa");
     expect(fileStorage.folderExists).toHaveReturnedTimes(3);
-    expect(fileStorage.folderExists).toBeCalledWith({ path: "aa/src/infra/repos/postgres/" });
+    expect(fileStorage.folderExists).toBeCalledWith({
+      path: "aa/src/application/controllers/",
+    });
   });
   it("should be able to create folder ", () => {
     fileStorage.folderExists = vitest.fn().mockReturnValueOnce(false);
     useCase.handle("aa");
 
     expect(fileStorage.makeDir).toHaveReturnedTimes(3);
-    expect(fileStorage.makeDir).toBeCalledWith({ path: "aa/src/infra/repos/postgres/" });
+    expect(fileStorage.makeDir).toBeCalledWith({
+      path: "aa/src/application/controllers/",
+    });
   });
 });
