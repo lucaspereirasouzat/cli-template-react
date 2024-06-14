@@ -13,11 +13,11 @@ export class Remote{{ className }}Show implements {{ className }}Show {
       url: this.url.replace("{id}", id),
       method: "get"
     });
-    const Remote{{ className }}sShow = httpResponse.body || ({} as Remote{{ className }}sShow.Model);
+    const Remote{{ className }}Show = httpResponse.body || ({} as Remote{{ className }}Show.Model);
 
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return Remote{{ className }}sShow;
+        return Remote{{ className }}Show;
       case HttpStatusCode.notFound:
         throw new {{ className }}NotFoundError()
       case HttpStatusCode.unauthorized:
