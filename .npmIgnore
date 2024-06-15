@@ -1,4 +1,4 @@
-.husk
+clean_code_react_template_cli.husk
 /coverage
 tsconfig.json
 vitest.config.ts

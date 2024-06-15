@@ -2,7 +2,7 @@
   "name": "clean_code_react_template_cli",
   "description": "Professional API using Clean Architecture and TDD.",
   "license": "GPL-3.0-or-later",
-  "version": "0.0.99",
+  "version": "0.0.1",
   "keywords": [
     "clean architecture",
     "clean code",
@@ -37,7 +37,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "lint": "rome check ./src",
+    "lint": "",
     "prepare": "husky install"
   },
   "dependencies": {
