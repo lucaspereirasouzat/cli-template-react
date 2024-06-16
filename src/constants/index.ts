@@ -1,11 +1,11 @@
 export const TEMPLATE_FOLDER = "../../resources/views/templates";
 
 export const PATH_HOOKS_QUERYS_APPLICATION = "presentation/hooks/queries";
-export const PATH_HOOKS_QUERYS = `${TEMPLATE_FOLDER}/HooksQuerys.html`;
+export const PATH_HOOKS_QUERYS = `${TEMPLATE_FOLDER}/HooksQuerys.html` as const;
 export const PATH_HOOKS_QUERYS_TEST = ''
 
 export const PATH_FACTORY_USE_CASES_APPLICATION = "main/factories/use-cases";
-export const PATH_FACTORY_USE_CASES = `${TEMPLATE_FOLDER}/FactoryUseCases.html`;
+export const PATH_FACTORY_USE_CASES = `${TEMPLATE_FOLDER}/FactoryUseCases.html` as const;
 
 export const PATH_DATA_USE_CASES = "data/use-cases";
 export const PATH_USE_CASE_DOMAIN = "domain/use-cases";

@@ -21,6 +21,7 @@ PATH_USE_CASE_TEST,
 PATH_USE_CASE_FACTORY,
 
   CONTROLLER_FACTORY_PATH,
+  PATH_FACTORY_USE_CASES,
 } from "@/constants";
 import { LogFailure, LogSuccess } from "@/domain/contracts/logger";
 import { Resolve } from "@/domain/contracts/Resolve";
@@ -50,6 +51,7 @@ export class CreateRequest {
     const titleFormated = titleConversion.GetFormatedTitleFileName();
     const path = titleConversion.getPathFromTitle();
     if (!onlyTest) {
+      // start
       const fileInString = this.fileStorage.readFileString({
         path: this.pathResolver.pathresolve(__dirname, PATH_HOOKS_QUERYS),
       });
@@ -72,12 +74,14 @@ export class CreateRequest {
         titleFormated
       );
 
-      this.logger.log({ message: `\n diretorio da controller ${pathToWrite}` });
+      this.logger.log({ message: `\n diretorio de hooks quers ${pathToWrite}` });
 
       createFile.createIndex(path, pathFolder, titleFormated);
 
+      // end
+
       const fileFactoryInString = this.fileStorage.readFileString({
-        path: this.pathResolver.pathresolve(__dirname, PATH_FACTORY_CONTROLLER),
+        path: this.pathResolver.pathresolve(__dirname, PATH_FACTORY_USE_CASES),
       });
 
       const replacedFactoryFileString = new FormatDocument(
@@ -85,7 +89,7 @@ export class CreateRequest {
         UpperCase,
         properites
       ).formatDocument();
-      const pathFactoryFolder = `${pathFull}/src/${CONTROLLER_FACTORY_PATH}`;
+      const pathFactoryFolder = `${pathFull}/src/${PATH_FACTORY_USE_CASES_APPLICATION}`;
       const createFactoryFile = new CreateFile(
         this.fileStorage,
         this.pathResolver
@@ -98,7 +102,7 @@ export class CreateRequest {
       );
 
       this.logger.log({
-        message: `\n diretorio do factory controller ${pathToFactoryWrite}`,
+        message: `\n diretorio do factory use cases factory ${pathToFactoryWrite}`,
       });
 
       createFile.createIndex(path, pathFactoryFolder, titleFormated);
@@ -112,23 +116,23 @@ export class CreateRequest {
       throw new CouldNotWrite();
     }
 
-    if (onlyTest || test) {
-      const createFile = new CreateFile(this.fileStorage, this.pathResolver);
-      const pathTestFolder = `${pathFull}/tests/${PATH_HOOKS_QUERYS_APPLICATION}/${path}`;
-      const replacedFactoryTestFileString = new FormatDocument(
-        fileInTestString,
-        UpperCase,
-        properites
-      ).formatDocument();
-      const pathToWriteTest = createFile.createFile(
-        pathTestFolder,
-        replacedFactoryTestFileString,
-        titleFormated.replace(".ts", ".spec.ts")
-      );
-      this.logger.log({
-        message: `\n diretorio da controller test ${pathToWriteTest}`,
-      });
-    }
+    // if (onlyTest || test) {
+    //   const createFile = new CreateFile(this.fileStorage, this.pathResolver);
+    //   const pathTestFolder = `${pathFull}/tests/${PATH_HOOKS_QUERYS_APPLICATION}/${path}`;
+    //   const replacedFactoryTestFileString = new FormatDocument(
+    //     fileInTestString,
+    //     UpperCase,
+    //     properites
+    //   ).formatDocument();
+    //   const pathToWriteTest = createFile.createFile(
+    //     pathTestFolder,
+    //     replacedFactoryTestFileString,
+    //     titleFormated.replace(".ts", ".spec.ts")
+    //   );
+    //   this.logger.log({
+    //     message: `\n diretorio da controller test ${pathToWriteTest}`,
+    //   });
+    // }
 
     return fileInTestString;
   }
