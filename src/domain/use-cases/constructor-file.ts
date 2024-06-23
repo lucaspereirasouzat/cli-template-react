@@ -11,15 +11,25 @@ import { Resolve } from "@/domain/contracts/Resolve";
 import { FormatDocument, CreateFile } from "@/domain/entities";
 import { ReadFileAndGetString } from "./read-file-and-get-string";
 
-interface MountFile {
+interface DefaultFile {
   UpperCase: string;
   properites: object;
   pathFull: string;
   path: string;
   titleFormated: string;
+}
+
+interface MountFile {
+  // UpperCase: string;
+  // properites: object;
+  // pathFull: string;
+  // path: string;
+  // titleFormated: string;
+
   fullPathFolder: string;
   pathfileString: string;
 }
+
 export class ConstructorFile {
   constructor(
     private readonly fileStorage: ReadFile &
@@ -29,10 +39,12 @@ export class ConstructorFile {
       AppendFile &
       FileExists,
     private readonly pathResolver: Resolve,
-    private readonly logger: LogFailure & LogSuccess
+    private readonly logger: LogFailure & LogSuccess,
+
+    private readonly defaultFile: DefaultFile
   ) { }
 
-  mountFile({ UpperCase, properites, pathFull, path, titleFormated, fullPathFolder, pathfileString }: MountFile) {
+  mountFile({ fullPathFolder, pathfileString }: MountFile): ConstructorFile {
     const stringFile = new ReadFileAndGetString(
       this.fileStorage,
       this.pathResolver
@@ -40,20 +52,49 @@ export class ConstructorFile {
 
     const replacedFileString = new FormatDocument(
       stringFile,
-      UpperCase,
-      properites
+      this.defaultFile.UpperCase,
+      this.defaultFile.properites
     ).formatDocument();
-    const pathFolder = `${pathFull}/src/${fullPathFolder}`;
+    const pathFolder = `${this.defaultFile.pathFull}/src/${fullPathFolder}`;
 
     const createFile = new CreateFile(this.fileStorage, this.pathResolver);
     const pathToWrite = createFile.createFile(
-      `${pathFolder}/${path}`,
+      `${pathFolder}/${this.defaultFile.path}`,
       replacedFileString,
-      titleFormated
+      this.defaultFile.titleFormated
     );
 
-    this.logger.log({ message: `\n diretorio de hooks quers ${pathToWrite}` });
+    this.logger.log({ message: `\n diretorio - ${pathfileString} - ${pathToWrite}` });
 
-    createFile.createIndex(path, pathFolder, titleFormated);
+    createFile.createIndex(this.defaultFile.path, pathFolder, this.defaultFile.titleFormated);
+
+    return this
+  }
+
+  mountFileTest({ fullPathFolder, pathfileString }: MountFile): ConstructorFile {
+    const stringFile = new ReadFileAndGetString(
+      this.fileStorage,
+      this.pathResolver
+    ).getFileString(pathfileString);
+
+    const replacedFileString = new FormatDocument(
+      stringFile,
+      this.defaultFile.UpperCase,
+      this.defaultFile.properites
+    ).formatDocument();
+    const pathFolder = `${this.defaultFile.pathFull}/test/${fullPathFolder}`;
+
+    const createFile = new CreateFile(this.fileStorage, this.pathResolver);
+    const pathToWrite = createFile.createFile(
+      `${pathFolder}/${this.defaultFile.path}`,
+      replacedFileString,
+      this.defaultFile.titleFormated
+    );
+
+    this.logger.log({ message: `\n diretorio - ${pathfileString} - ${pathToWrite}` });
+
+   // createFile.createIndex(this.defaultFile.path, pathFolder, this.defaultFile.titleFormated);
+
+    return this
   }
 }
