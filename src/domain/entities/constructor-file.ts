@@ -91,7 +91,7 @@ export class ConstructorFile {
       this.defaultFile.titleFormated
     );
 
-    this.logger.log({ message: `\n diretorio - ${pathfileString} - ${pathToWrite}` });
+    this.logger.log({ message: `\n diretorio - ${fullPathFolder} - ${pathToWrite}` });
 
    // createFile.createIndex(this.defaultFile.path, pathFolder, this.defaultFile.titleFormated);
 

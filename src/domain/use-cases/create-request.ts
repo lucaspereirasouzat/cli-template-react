@@ -14,17 +14,19 @@ import {
   PATH_FACTORY_CONTROLLER,
   PATH_FACTORY_USE_CASES_APPLICATION,
   PATH_USE_CASE_GATEWAY,
-  PATH_USE_CASE,
+  PATH_USE_CASE_FILE,
   PATH_USE_CASE_TEST,
-  PATH_USE_CASE_FACTORY,
+  PATH_USE_CASE_FACTORY_FILE,
   CONTROLLER_FACTORY_PATH,
-  PATH_FACTORY_USE_CASES,
+  PATH_FACTORY_USE_CASES_FILE,
   PATH_DATA_USE_CASES,
+  PATH_USE_CASE_DOMAIN,
+  PATH_USE_CASE_DOMAIN_FILE,
 } from "@/constants";
 import { LogFailure, LogSuccess } from "@/domain/contracts/logger";
 import { Resolve } from "@/domain/contracts/Resolve";
 import { FormatDocument, TitleConversion, CreateFile } from "@/domain/entities";
-import { ConstructorFile } from "./constructor-file";
+import { ConstructorFile } from "../entities/constructor-file";
 
 export class CreateRequest {
   constructor(
@@ -67,12 +69,16 @@ export class CreateRequest {
         fullPathFolder: PATH_HOOKS_QUERYS_APPLICATION,
       })
       .mountFile({
-        pathfileString: PATH_FACTORY_USE_CASES,
+        pathfileString: PATH_FACTORY_USE_CASES_FILE,
         fullPathFolder: PATH_FACTORY_USE_CASES_APPLICATION,
       })
       .mountFile({
-        pathfileString: PATH_USE_CASE,
+        pathfileString: PATH_USE_CASE_FILE,
         fullPathFolder: PATH_DATA_USE_CASES,
+      })
+      .mountFile({
+        pathfileString: PATH_USE_CASE_DOMAIN_FILE,
+        fullPathFolder: PATH_USE_CASE_DOMAIN
       })
     }
 

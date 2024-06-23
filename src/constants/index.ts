@@ -5,15 +5,17 @@ export const PATH_HOOKS_QUERYS = `${TEMPLATE_FOLDER}/HooksQuerys.html`;
 export const PATH_HOOKS_QUERYS_TEST = ''
 
 export const PATH_FACTORY_USE_CASES_APPLICATION = "main/factories/use-cases";
-export const PATH_FACTORY_USE_CASES = `${TEMPLATE_FOLDER}/FactoryUseCases.html`;
+export const PATH_FACTORY_USE_CASES_FILE = `${TEMPLATE_FOLDER}/FactoryUseCases.html`;
 
 export const PATH_DATA_USE_CASES = "data/use-cases";
-export const PATH_USE_CASE = `${TEMPLATE_FOLDER}/UseCase.html`;
+export const PATH_USE_CASE_FILE = `${TEMPLATE_FOLDER}/UseCase.html`;
 export const PATH_USE_CASE_TEST = `${TEMPLATE_FOLDER}/UseCaseTest.html`;
 
 export const PATH_USE_CASE_DOMAIN = "domain/use-cases";
+export const PATH_USE_CASE_DOMAIN_FILE = `${TEMPLATE_FOLDER}/DomainUseCase.html`;
+
 export const PATH_USE_CASE_GATEWAY = "main/factories/domain/use-cases";
-export const PATH_USE_CASE_FACTORY = `${TEMPLATE_FOLDER}/FactoryUseCase.html`;
+export const PATH_USE_CASE_FACTORY_FILE = `${TEMPLATE_FOLDER}/FactoryUseCase.html`;
 
 // src/data/use-cases/contact/contacts/remote-show.ts
 
