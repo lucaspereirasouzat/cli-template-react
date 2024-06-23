@@ -22,10 +22,12 @@ import {
   PATH_DATA_USE_CASES,
   PATH_USE_CASE_DOMAIN,
   PATH_USE_CASE_DOMAIN_FILE,
+  PATH_ERROR,
+  PATH_ERROR_FILE,
 } from "@/constants";
 import { LogFailure, LogSuccess } from "@/domain/contracts/logger";
 import { Resolve } from "@/domain/contracts/Resolve";
-import { FormatDocument, TitleConversion, CreateFile } from "@/domain/entities";
+import { TitleConversion } from "@/domain/entities";
 import { ConstructorFile } from "../entities/constructor-file";
 
 export class CreateRequest {
@@ -79,6 +81,10 @@ export class CreateRequest {
       .mountFile({
         pathfileString: PATH_USE_CASE_DOMAIN_FILE,
         fullPathFolder: PATH_USE_CASE_DOMAIN
+      })
+      .mountFile({
+        pathfileString: PATH_ERROR_FILE,
+        fullPathFolder: PATH_ERROR
       })
     }
 

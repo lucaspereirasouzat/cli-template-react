@@ -14,6 +14,9 @@ export const PATH_USE_CASE_TEST = `${TEMPLATE_FOLDER}/UseCaseTest.html`;
 export const PATH_USE_CASE_DOMAIN = "domain/use-cases";
 export const PATH_USE_CASE_DOMAIN_FILE = `${TEMPLATE_FOLDER}/DomainUseCase.html`;
 
+export const PATH_ERROR = "domain/error"
+export const PATH_ERROR_FILE = `${TEMPLATE_FOLDER}/Error.html`
+
 export const PATH_USE_CASE_GATEWAY = "main/factories/domain/use-cases";
 export const PATH_USE_CASE_FACTORY_FILE = `${TEMPLATE_FOLDER}/FactoryUseCase.html`;
 
@@ -29,8 +32,8 @@ export const PATH_FACTORY_CONTROLLER = `${TEMPLATE_FOLDER}/FactoryController.htm
 export const DOMAIN_CONTRACT_PATH = "domain/contracts";
 export const PATH_CONTRACT = `${TEMPLATE_FOLDER}/Contract.html`;
 
-export const PATH_ERROR = `${TEMPLATE_FOLDER}/Error.html`;
-export const PATH_ERROR_APPLICATION = "domain/entities/errors";
+// export const PATH_ERROR = `${TEMPLATE_FOLDER}/Error.html`;
+// export const PATH_ERROR_APPLICATION = "domain/entities/errors";
 
 export const GATEWAY_PATH_APPLICATION = "infra/gateways";
 export const PATH_GATEWAY = `${TEMPLATE_FOLDER}/Gateways.html`;
