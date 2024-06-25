@@ -5,18 +5,15 @@ interface Options {
 }
 
 export default (name: string, options: Options, fullpath: string): void => {
-  const { test, properties, onlyTest,multipleMethods, ...rest } = options
+  const { test, properties, onlyTest,Mul, ...rest } = options
   const allroutes = routes()
-  console.log({
-    test, properties, onlyTest,multipleMethods, ...rest
-  });
 
   const keys = Object.keys(rest)
   keys.forEach(element => {
     try {
       if(allroutes[element]){
-        if(multipleMethods){
-          (multipleMethods as any as string).split(',').map(item => {
+        if(Mul){
+          (Mul as any as string).split(',').map(item => {
             allroutes[element]?.handle(fullpath, `${name}/${item}`, test, properties, onlyTest);
           })
           return
