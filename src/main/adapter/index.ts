@@ -7,6 +7,7 @@ interface Options {
 export default (name: string, options: Options, fullpath: string): void => {
   const { test, properties, onlyTest,Mul, ...rest } = options
   const allroutes = routes()
+  console.log({ test, properties, onlyTest,Mul, ...rest });
 
   const keys = Object.keys(rest)
   keys.forEach(element => {
