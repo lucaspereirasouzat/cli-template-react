@@ -14,7 +14,6 @@ program
   .description("Create a new file based on a template")
   .option("-test, --tests", "Create test")
   .option("-onlyTest", "--onlyTest", "Run only test")
-  .option("-mul <string>", "--multipleMethods <multiple>", "Add mutiple multipleMethods separeted by ,")
   .option("-pro", "--properties", "Properties")
   .option("-req, --request", "Create Request")
   .option("-mid, --midleware", "Create Midleware")

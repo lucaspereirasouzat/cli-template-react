@@ -1,8 +1,8 @@
-export interface Aaaa {
-  Aaaa(input: Aaaa.Params): Promise<Aaaa.Result>
+export interface AddMutipleMultipleMethodsSeparetedBy {
+  AddMutipleMultipleMethodsSeparetedBy(input: AddMutipleMultipleMethodsSeparetedBy.Params): Promise<AddMutipleMultipleMethodsSeparetedBy.Result>
 }
 
-export namespace Aaaa {
+export namespace AddMutipleMultipleMethodsSeparetedBy {
   export type Params = {
     id: string
   }
