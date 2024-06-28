@@ -13,6 +13,8 @@ export default (name: string, options: Options, fullpath: string): void => {
     try {
       if(allroutes[element]){
         name.split(',').forEach(item => {
+          console.log({item, element});
+
           allroutes[element]?.handle(fullpath, item.trim(), test, properties, onlyTest);
         })
       }

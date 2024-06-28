@@ -1,0 +1,96 @@
+export interface Aaaa {
+  Aaaa(input: Aaaa.Params): Promise<Aaaa.Result>
+}
+
+export namespace Aaaa {
+  export type Params = {
+    id: string
+  }
+
+  export type Result = {
+    id: string
+    name: string
+    status: string
+    createdAt: string
+    parentId?: string
+    rating?: number
+    birthDate?: string
+    attachmentId?: string
+    gender?: string
+    channels?: Array<{
+      id: string
+      type: string
+      value: string
+      contactId: string
+      createdAt: string
+      updatedAt?: any
+    }>
+    picture?: {
+      fileName: string
+      fullPath: string
+      size: number
+      mimeType: string
+      id: string
+      path: string
+      createdAt: string
+      updatedAt?: any
+    }
+    tagsRelations: Array<{
+      id: string
+      tagId: string
+      entityType: string
+      entityId: string
+      tag: {
+        id: string
+        name: string
+        slug: string
+        description?: string
+        createdAt: string
+        updatedAt?: string
+      }
+      createdAt: string
+    }> | []
+    nickname?: string
+    inscription?: string
+    notes?: string
+    updatedAt?: string
+    activities?: Array<{
+      id: string
+      contactId?: string
+      contactChannelId?: string
+      userId?: string
+      taskId?: number
+      crmBoardId?: string
+      parentId?: string
+      createdBy?: string
+      status: string
+      notes?: string
+      dueDate: string
+      startedAt?: string
+      finishedAt?: string
+      createdAt: string
+      updatedAt?: string
+    }>
+    parent?: {
+      id: string
+      createdBy: string
+      name: string
+      parentId?: string
+      nickname?: string
+      inscription?: string
+      notes?: string
+      status: string
+      attachmentId?: string
+      createdAt: string
+      updatedAt?: string
+      channels?: Array<{
+        id: string
+        contactId: string
+        value: string
+        type: string
+        createdAt: string
+        updatedAt?: string
+      }>
+    }
+  }
+}
