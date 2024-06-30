@@ -65,17 +65,9 @@ export class CreateRequest {
     )
 
     if (!onlyTest) {
-      console.log({
-        PATH_HOOKS_QUERYS,
-        PATH_HOOKS_QUERYS_APPLICATION,
-        PATH_FACTORY_USE_CASES_FILE,
-        PATH_FACTORY_USE_CASES_APPLICATION,
-        PATH_USE_CASE_FILE,
-        PATH_DATA_USE_CASES: PATH_DATA_USE_CASES_APPLICATION,
-        PATH_USE_CASE_DOMAIN_FILE,
-        PATH_USE_CASE_DOMAIN,
-        PATH_ERROR_FILE,
-        PATH_ERROR
+      console.log('with error',{
+        pathfileString: PATH_USE_CASE_FILE,
+        fullPathFolder: PATH_DATA_USE_CASES_APPLICATION,
       });
 
       constructorFile
@@ -87,10 +79,10 @@ export class CreateRequest {
           pathfileString: PATH_FACTORY_USE_CASES_FILE,
           fullPathFolder: PATH_FACTORY_USE_CASES_APPLICATION,
         })
-        // .mountFile({
-        //   pathfileString: PATH_USE_CASE_FILE,
-        //   fullPathFolder: PATH_DATA_USE_CASES_APPLICATION,
-        // })
+        .mountFile({
+          pathfileString: PATH_USE_CASE_FILE,
+          fullPathFolder: PATH_DATA_USE_CASES_APPLICATION,
+        })
         .mountFile({
           pathfileString: PATH_USE_CASE_DOMAIN_FILE,
           fullPathFolder: PATH_USE_CASE_DOMAIN
