@@ -45,7 +45,7 @@ export class CreateFile {
 				isInsideString = indexFileString.includes(`export * from './${pathSplited}'`);
 			}
 
-			if (!isInsideString) {
+			if (!isInsideString && pathSplited) {
 				this.fileStorage.appendFile({
 					path: `${pathFileFolder}/index.ts`,
 					content: `export * from './${pathSplited}'\n`,
