@@ -1,0 +1,22 @@
+"use client"
+
+import { {{ className }} } from "@/presentation/pages";
+import { useTranslations } from "next-intl";
+import { makeAiPromptTranslateIntl } from "@/presentation/translations";
+import { useAiCategoriesList } from "@/presentation/hooks/queries/ai/categories";
+import { AiCategoriesList } from "@/domain/use-cases";
+
+interface Props {
+}
+
+export const Make{{ className }}: React.FC<Props> = ({ ...props }: Props) => {
+    const translator = useTranslations('{{ className }}');
+
+    return (
+        <{{ className }}
+            i18n={makeAiPromptTranslateIntl(translator)}
+            listCategories={useAiCategoriesList(listDataServer)}
+            {...props}
+        />
+    )
+}

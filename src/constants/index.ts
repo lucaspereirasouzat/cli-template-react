@@ -7,7 +7,7 @@ export const PATH_HOOKS_QUERYS_TEST = ''
 export const PATH_FACTORY_USE_CASES_APPLICATION = "main/factories/use-cases";
 export const PATH_FACTORY_USE_CASES_FILE = `${TEMPLATE_FOLDER}/FactoryUseCases.html`;
 
-export const PATH_DATA_USE_CASES = "data/use-cases";
+export const PATH_DATA_USE_CASES_APPLICATION = "data/use-cases";
 export const PATH_USE_CASE_FILE = `${TEMPLATE_FOLDER}/UseCase.html`;
 export const PATH_USE_CASE_TEST = `${TEMPLATE_FOLDER}/UseCaseTest.html`;
 
