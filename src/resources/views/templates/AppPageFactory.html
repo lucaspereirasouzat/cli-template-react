@@ -1,0 +1,15 @@
+"use client"
+
+import { {{ className }}Page } from "@/presentation/pages";
+import { useTranslations } from "next-intl";
+import { make{{ className }}TranslateIntl } from "@/presentation/translations";
+
+export const Make{{ className }}Page: React.FC = () => {
+    const i18n = useTranslations('Profile');
+
+    return (
+        <{{ className }}Page
+            i18n={make{{ className }}TranslateIntl(i18n)}
+        />
+    )
+}
