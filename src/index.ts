@@ -29,11 +29,6 @@ program
   // .option("-evt, --events", "Create Events")
   // .option("-adp, --adapter", "Create Adapter")
   .action((name, options) => {
-    console.log({
-      name, options
-    });
-
-
     adapter(name, options, process.cwd());
   });
 program.parse(process.argv);

@@ -20,7 +20,6 @@ export const PATH_ERROR_FILE = `${TEMPLATE_FOLDER}/Error.html`
 export const PATH_USE_CASE_GATEWAY = "main/factories/domain/use-cases";
 export const PATH_USE_CASE_FACTORY_FILE = `${TEMPLATE_FOLDER}/FactoryUseCase.html`;
 
-// src/data/use-cases/contact/contacts/remote-show.ts
 
 export const PATH_CONTROLLER = `${TEMPLATE_FOLDER}/Controller.html`;
 export const PATH_CONTROLLER_TEST = `${TEMPLATE_FOLDER}/ControllerTest.html`;
