@@ -18,16 +18,8 @@ program
   .option("-req, --request", "Create Request")
   .option("-mid, --midleware", "Create Midleware")
   .option("-err, --error", "Create error")
-  // .option("-ctl, --controller", "Create Controller")
-  // .option("-use, --useCase", "Create UseCases")
-  // .option("-gat, --gateWay", "Create Gateway")
-  // .option("-rep, --repo", "Create repository")
-  // .option("-ent, --entity", "Create entity")
-  // .option("-val, --validation", "Create Validation")
-  // .option("-rot, --route", "Create Route")
-  // .option("-dec, --decorator", "Create Decorator")
-  // .option("-evt, --events", "Create Events")
-  // .option("-adp, --adapter", "Create Adapter")
+  .option("-trans, --translation", "Create Translation")
+  .option("-vali, --validation", "Create Validation")
   .action((name, options) => {
     adapter(name, options, process.cwd());
   });

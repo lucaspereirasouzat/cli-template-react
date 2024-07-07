@@ -54,7 +54,7 @@ export const REPOSITORY_FACTORY_PATH = "main/factories/infra/repos/postgres";
 
 export const PATH_VALIDATION = `${TEMPLATE_FOLDER}/Validation.html`;
 export const PATH_VALIDATION_TEST = `${TEMPLATE_FOLDER}/ValidationTest.html`;
-export const VALIDATION_PATH = "application/validation";
+export const VALIDATION_PATH = "main/factories/validation";
 
 export const PATH_ROUTE = `${TEMPLATE_FOLDER}/Route.html`;
 export const PATH_ROUTE_TEST = `${TEMPLATE_FOLDER}/RouteTest.html`;
@@ -66,6 +66,10 @@ export const MIDDLEWARE_PATH = "application/middlewares";
 
 export const MIDDLEWARE_MAIN_PATH = "main/middlewares";
 export const PATH_MAIN_MIDDLEWARE = `${TEMPLATE_FOLDER}/MiddlewareMain.html`;
+
+export const TRANSLATION_MAIN_PATH = "presentation/translations/pages/signin";
+export const PATH_MAIN_TRANSLATION = `${TEMPLATE_FOLDER}/TransLation.html`;
+export const PATH_MAIN_TRANSLATION_TEST = `${TEMPLATE_FOLDER}/TransLationTest.html`;
 
 export const DECORATOR_PATH = "application/decorators/";
 export const PATH_DECORATOR_GATEWAY = "main/factories/application/decorators/";

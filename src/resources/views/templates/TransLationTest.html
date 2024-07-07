@@ -1,0 +1,12 @@
+import { make{{ className }}TranslateIntl } from '@/presentation/translations'
+
+describe('make{{ className }}TranslateIntl', () => {
+  const translator = jest.fn().mockReturnValue(`a`)
+  it('should validate output', () => {
+    const result = make{{ className }}TranslateIntl(translator)
+
+    expect(result).toStrictEqual({
+      title: 'a'
+    })
+  })
+})

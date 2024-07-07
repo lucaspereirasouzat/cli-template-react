@@ -20,12 +20,6 @@ interface DefaultFile {
 }
 
 interface MountFile {
-  // UpperCase: string;
-  // properites: object;
-  // pathFull: string;
-  // path: string;
-  // titleFormated: string;
-
   fullPathFolder: string;
   pathfileString: string;
 }
@@ -92,8 +86,6 @@ export class ConstructorFile {
     );
 
     this.logger.log({ message: `\n diretorio - ${fullPathFolder} - ${pathToWrite}` });
-
-   // createFile.createIndex(this.defaultFile.path, pathFolder, this.defaultFile.titleFormated);
 
     return this
   }

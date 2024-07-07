@@ -1,28 +1,59 @@
-import { InvalidFieldError } from '@/application/errors'
-import { {{ className }} } from '@/application/validation'
+import { MountValidator{{ className }}, make{{ className }}Validation } from '@/main/factories/validation'
+import { ZodError } from 'zod'
 
-describe('{{ className }}', () => {
-  it('should return InvalidFieldError if value date is invalid', () => {
-    const sut = new {{ className }}('test', 'date')
+describe('make{{ className }}Validation', () => {
+  const intlMessage = {
+    form: {
+      email: { validations: { invalid: 'a', required: 'a' } },
+      password: {
+        validations: {
+          invalid: 'a',
+          required: 'a',
+          chars: {
+            min: 'a',
+            max: 'a'
+          }
+        }
+      }
+    }
+  }
 
-    const error = sut.validate()
+  let validator: MountValidator{{ className }}
 
-    expect(error).toEqual(new InvalidFieldError('date'))
+  beforeAll(() => {
+    validator = make{{ className }}Validation(intlMessage)
   })
 
-  it('should return InvalidFieldError if value date is number valid', () => {
-    const sut = new {{ className }}('test', 'date')
+  it('should  make MountValidator{{ className }} with success', () => {
+    const input = {
+      email: 'email@teste.com',
+      password: 'XXXXXXXX'
+    }
+    const validate = validator.validate.parse(input)
 
-    const error = sut.validate()
-
-    expect(error).toEqual(new InvalidFieldError('date'))
+    expect(validate).toEqual(input)
   })
+  it("should't make MountValidator{{ className }} with error", () => {
+    const input = {
+      email: 'aaa'
+    }
 
-  it('should not return InvalidFieldError if value is valid', () => {
-    const sut = new {{ className }}('test', 'date')
-
-    const error = sut.validate()
-
-    expect(error).toEqual(undefined)
+    expect(() => validator.validate.parse(input)).toThrow(
+      new ZodError([
+        {
+          validation: 'email',
+          code: 'invalid_string',
+          message: 'a',
+          path: ['email']
+        },
+        {
+          code: 'invalid_type',
+          expected: 'string',
+          received: 'undefined',
+          path: ['password'],
+          message: 'a'
+        }
+      ])
+    )
   })
 })

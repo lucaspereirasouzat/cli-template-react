@@ -1,4 +1,3 @@
-import { CouldNotWrite } from "@/domain/entities/errors";
 import {
   FolderExists,
   MakeDir,

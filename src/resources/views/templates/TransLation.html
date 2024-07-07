@@ -1,0 +1,19 @@
+type Translator = (key: string) => string
+
+interface RequestIntl {
+  error: {
+    title: string
+    description: string
+    action: string
+  }
+}
+
+export interface {{ className }}OutputTranslationIntl {
+  title: string
+}
+
+export const make{{ className }}TranslateIntl = (translations: Translator): {{ className }}OutputTranslationIntl => {
+  return {
+    title: translations('title'),
+  }
+}

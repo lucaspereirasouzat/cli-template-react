@@ -1,13 +1,26 @@
-// import { InvalidFieldError } from '@/application/errors'
-import { Validator } from './validator'
+import type { Validation } from '@/presentation/protocols'
+import type { {{ className }}OutputTranslationValidation } from '@/presentation/translations/pages'
+import * as z from 'zod'
 
-export class {{ className }} implements Validator {
-  constructor (
-    private readonly value: Date,
-    private readonly field: string
-  ) { }
-
-  validate (): Error | undefined {
-   // if (isNaN(Date.parse(this.value.toString()))) return new InvalidFieldError(this.field)
-  }
+interface TranslateValidation {
+  form: {{ className }}OutputTranslationValidation
 }
+
+export type MountValidator{{ className }} = Validation<{ email: string, password: string  }>
+
+export const make{{ className }}Validation
+  = (intl: TranslateValidation): MountValidator{{ className }} => {
+    return {
+      validate: z.object({
+        email: z.string()
+        .email(
+          intl.form.email.validations.invalid
+        ),
+        password: z.string({
+          required_error: intl.form.password.validations.required,
+        })
+        .min(5, intl.form.password.validations.chars.min)
+      })
+    }
+  }
+
