@@ -1,29 +1,29 @@
-import { {{ className }}Show } from '@/data/use-cases/contact/contacts'
+import { {{ className }} } from '@/data/use-cases/contact/contacts'
 import { HttpStatusCode } from '@/data/protocols/http'
-import { ContactNotFoundError, InvalidCredentialsError, UnexpectedError } from '@/domain/error'
+import { {{ className }}NotFoundError, InvalidCredentialsError, UnexpectedError } from '@/domain/error'
 import { HttpClientSpy } from '../../../mocks'
 
 import {faker} from '@faker-js/faker'
 
 type SutTypes = {
-  sut: {{ className }}Show
-  httpClientSpy: HttpClientSpy<{{ className }}Show.Model>
+  sut: {{ className }}
+  httpClientSpy: HttpClientSpy<{{ className }}.Model>
 }
 
 const makeSut = (url: string = faker.internet.url()): SutTypes => {
-  const httpClientSpy = new HttpClientSpy<{{ className }}Show.Model>()
-  const sut = new {{ className }}Show(url, httpClientSpy)
+  const httpClientSpy = new HttpClientSpy<{{ className }}.Model>()
+  const sut = new {{ className }}(url, httpClientSpy)
   return {
     sut,
     httpClientSpy
   }
 }
 
-export const mockParams: {{ className }}Show.Params = {
+export const mockParams: {{ className }}.Params = {
   id: faker.string.uuid()
 }
 
-export const mockResult: {{ className }}Show.Model = {
+export const mockResult: {{ className }}.Model = {
   id: faker.string.uuid(),
   name: faker.person.fullName(),
   status: 'enabled',
@@ -34,12 +34,12 @@ export const mockResult: {{ className }}Show.Model = {
   updatedAt: new Date().toISOString()
 }
 
-describe('{{ className }}Show', () => {
+describe('{{ className }}', () => {
   test('Should call HttpClient with correct values', async () => {
     const url = faker.internet.url()
     const { sut, httpClientSpy } = makeSut(url)
 
-    await sut.show(mockParams)
+    await sut.(mockParams)
 
     expect(httpClientSpy.url).toEqual(url)
     expect(httpClientSpy.method).toBe('get')
@@ -52,7 +52,7 @@ describe('{{ className }}Show', () => {
       statusCode: HttpStatusCode.badRequest
     }
 
-    const promise = sut.show(mockParams)
+    const promise = sut.(mockParams)
 
     await expect(promise).rejects.toThrow(new UnexpectedError())
   })
@@ -63,7 +63,7 @@ describe('{{ className }}Show', () => {
       statusCode: HttpStatusCode.serverError
     }
 
-    const promise = sut.show(mockParams)
+    const promise = sut.(mockParams)
 
     await expect(promise).rejects.toThrow(new UnexpectedError())
   })
@@ -74,7 +74,7 @@ describe('{{ className }}Show', () => {
       statusCode: HttpStatusCode.notFound
     }
 
-    const promise = sut.show(mockParams)
+    const promise = sut.(mockParams)
 
     await expect(promise).rejects.toThrow(new ContactNotFoundError())
   })
@@ -85,7 +85,7 @@ describe('{{ className }}Show', () => {
       statusCode: HttpStatusCode.unauthorized
     }
 
-    const promise = sut.show(mockParams)
+    const promise = sut.(mockParams)
 
     await expect(promise).rejects.toThrow(new InvalidCredentialsError())
   })
@@ -98,7 +98,7 @@ describe('{{ className }}Show', () => {
       body: httpResult
     }
 
-    const account = await sut.show(mockParams)
+    const account = await sut.(mockParams)
 
     expect(account).toEqual(httpResult)
   })

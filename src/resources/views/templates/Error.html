@@ -1,6 +1,27 @@
-export class {{ className }}Error extends Error {
+export class {{ className }}StoreError extends Error {
   constructor () {
-    super('{{ className }} Error')
-    this.name = '{{ className }}Error'
+    super('{{ className }} Store Error')
+    this.name = '{{ className }}StoreError'
+  }
+}
+
+export class {{ className }}DeletedError extends Error {
+  constructor () {
+    super('{{ className }} Delete Error')
+    this.name = '{{ className }}DeletedError'
+  }
+}
+
+export class {{ className }}NotFoundError extends Error {
+  constructor () {
+    super('{{ className }} Not Found Error')
+    this.name = '{{ className }}NotFoundError'
+  }
+}
+
+export class {{ className }}UpdatedError extends Error {
+  constructor () {
+    super('{{ className }} Updated Error')
+    this.name = '{{ className }}UpdatedError'
   }
 }

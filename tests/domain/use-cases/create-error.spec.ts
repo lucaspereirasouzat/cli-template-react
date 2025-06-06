@@ -1,5 +1,5 @@
 import { it, describe, expect, beforeEach, vitest } from "vitest";
-import { CreateRequest } from "@/domain/use-cases/create-request";
+import { CreateError } from "@/domain/use-cases/create-error";
 import {
   ReadFile,
   FolderExists,
@@ -13,8 +13,8 @@ import {
 import { Resolve } from "@/domain/contracts/Resolve";
 import { FileNotFound } from "@/domain/entities/errors";
 
-describe("Create Controller", () => {
-  let useCase: CreateRequest;
+describe("Create Error", () => {
+  let useCase: CreateError;
   let fileStorage: ReadFile &
     FolderExists &
     MakeDir &
@@ -43,7 +43,7 @@ describe("Create Controller", () => {
   });
 
   beforeEach(() => {
-    useCase = new CreateRequest(fileStorage, pathresolve, logger);
+    useCase = new CreateError(fileStorage, pathresolve, logger);
   });
   it("should be able to create a new file", () => {
     useCase.handle("aa");

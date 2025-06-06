@@ -1,23 +1,23 @@
 import { HttpClient, HttpStatusCode } from "@/data/protocols/http";
 import { {{ className }}NotFoundError, InvalidCredentialsError, UnexpectedError } from "@/domain/error";
-import { {{ className }}Show } from "@/domain/use-cases";
+import { {{ className }} } from "@/domain/use-cases";
 
-export class Remote{{ className }}Show implements {{ className }}Show {
+export class Remote{{ className }} implements {{ className }} {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpClient<Remote{{ className }}Show.Model>
+    private readonly httpClient: HttpClient<Remote{{ className }}.Model>
   ) {}
 
-  async show({id}: {{ className }}Show.Params): Promise<{{ className }}Show.Result> {
+  async {{ className }}({id}: {{ className }}.Params): Promise<{{ className }}.Result> {
     const httpResponse = await this.httpClient.request({
       url: this.url.replace("{id}", id),
       method: "get"
     });
-    const Remote{{ className }}Show = httpResponse.body || ({} as Remote{{ className }}Show.Model);
+    const Remote{{ className }} = httpResponse.body || ({} as Remote{{ className }}.Model);
 
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return Remote{{ className }}Show;
+        return Remote{{ className }};
       case HttpStatusCode.notFound:
         throw new {{ className }}NotFoundError()
       case HttpStatusCode.unauthorized:
@@ -28,7 +28,7 @@ export class Remote{{ className }}Show implements {{ className }}Show {
   }
 }
 
-export namespace Remote{{ className }}Show {
-  export type Params = {{ className }}Show.Params;
-  export type Model = {{ className }}Show.Result;
+export namespace Remote{{ className }} {
+  export type Params = {{ className }}.Params;
+  export type Model = {{ className }}.Result;
 }
