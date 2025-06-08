@@ -1,4 +1,4 @@
-//import { {{ className }}Show, {{ className }}Update } from '@/domain/contracts/repos'
+//import { {{ className }}, {{ className }}Update } from '@/domain/contracts/repos'
 import { PgRepository } from '@/infra/repos/postgres/repository'
 import { Pg{{ className }} } from './entities'
 
@@ -7,7 +7,7 @@ export class Pg{{ className }}Repository extends PgRepository // implements {
 
   }
 
-  async show ({ id }: {{ className }}Show.Input): Promise<{{ className }}Show.Output> {
+  async show ({ id }: {{ className }}.Input): Promise<{{ className }}.Output> {
     const pg{{classNameLower}}Repo = await this.getRepository(Pg{{className}})
     const {{classNameLower}} = await pg{{className}}Repo.findOne({ id })
 

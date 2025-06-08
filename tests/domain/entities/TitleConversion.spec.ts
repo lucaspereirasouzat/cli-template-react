@@ -24,8 +24,20 @@ describe("TitleConversion", () => {
 		expect(sut2.getPathFromTitle()).toBe("bbb/aaa/");
 	});
 	it("should return a title filenameFormated", () => {
-		const sut2 = new TitleConversion("/aaa/testA");
+		const sut2 = new TitleConversion("/aaa/test_a");
+    console.log(sut2.GetFormatedTitleFileName());
+
 		expect(sut2.GetFormatedTitleFileName()).toBe("test-a.ts");
+	});
+	it("should return a title filenameFormated from /aaa/Test_A", () => {
+		const sut2 = new TitleConversion("/aaa/Test_A");
+    console.log(sut2.GetFormatedTitleFileName());
+
+		expect(sut2.GetFormatedTitleFileName()).toBe("test-a.ts");
+	});
+	it("should return a title formated", () => {
+		const sut2 = new TitleConversion("aaa/testA");
+		expect(sut2.getPathFromTitle()).toBe("aaa/");
 	});
 	it("should return a title formated", () => {
 		const sut2 = new TitleConversion("aaa/testA");
