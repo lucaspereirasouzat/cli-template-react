@@ -1,5 +1,5 @@
 import { HttpClient, HttpStatusCode } from "@/data/protocols/http";
-import { {{ className }}NotFoundError, InvalidCredentialsError, UnexpectedError } from "@/domain/error";
+import { {{ className }}Error, InvalidCredentialsError, UnexpectedError } from "@/domain/error";
 import { {{ className }} } from "@/domain/use-cases";
 
 export class Remote{{ className }} implements {{ className }} {
@@ -19,7 +19,7 @@ export class Remote{{ className }} implements {{ className }} {
       case HttpStatusCode.ok:
         return Remote{{ className }};
       case HttpStatusCode.notFound:
-        throw new {{ className }}NotFoundError()
+        throw new {{ className }}Error()
       case HttpStatusCode.unauthorized:
         throw new InvalidCredentialsError();
       default:
